@@ -2,18 +2,13 @@ import './slider';
 import modals from './modules/modals';
 import tabs from './modules/tabs';
 import forms from './modules/forms';
+import modalState from './modalState';
 import changeModalState from './modules/changeModalState';
 
 window.addEventListener('DOMContentLoaded', () => {
 	'use strict';
 
-	const modalState = {
-		shape: 0,
-		width: '',
-		height: '',
-		type: "tree",
-		profile: ''
-	};
+
 
 	changeModalState(modalState);
 
