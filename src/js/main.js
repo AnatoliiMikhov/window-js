@@ -7,9 +7,6 @@ import changeModalState from './modules/changeModalState';
 
 window.addEventListener('DOMContentLoaded', () => {
 	'use strict';
-
-
-
 	changeModalState(modalState);
 
 	modals();

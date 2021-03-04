@@ -1,3 +1,5 @@
+import modalState from '../modalState';
+
 const modals = () => {
 	function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
 
@@ -6,7 +8,7 @@ const modals = () => {
 			close = document.querySelector(closeSelector),
 			windows = document.querySelectorAll('[data-modal]');
 
-/* -------------------------------- functions ------------------------------- */
+		/* -------------------------------- functions ------------------------------- */
 
 		const hideModals = () => {
 			windows.forEach(item => {
@@ -19,7 +21,7 @@ const modals = () => {
 			document.body.style.overflow = overflow;
 		};
 
-/* --------------------------------- events --------------------------------- */
+		/* --------------------------------- events --------------------------------- */
 
 		trigger.forEach(item => {
 			item.addEventListener('click', (e) => {
@@ -27,10 +29,28 @@ const modals = () => {
 					e.preventDefault();
 				}
 
-				hideModals();
+
 				toggleModals('block', 'hidden');
+
+				if (e.target.classList.contains('popup_calc_button')) {
+					if (!modalState.width || !modalState.height) {
+						modal.style.display = 'none';
+					} else {
+						hideModals();
+						toggleModals('block', 'hidden');
+					}
+				}
+
+				if (e.target.classList.contains('popup_calc_profile_button')) {
+					if (!modalState.profile) {
+						modal.style.display = 'none';
+					} else {
+						hideModals();
+						toggleModals('block', 'hidden');
+					}
+				}
 			});
-		})
+		});
 
 		close.addEventListener('click', () => {
 

@@ -11,14 +11,14 @@ const forms = (state) => {
 	/* -------------------------------- messages -------------------------------- */
 
 	const message = {
-		loading: "Loading...",
-		success: "Thanks...",
-		failure: "Что-то пошло не так..."
+		loading: "Загрузка...",
+		success: "Спасибо. Данные отправлены.",
+		failure: "Данные не отправлены<br>Проверьте подключение к интернету..."
 	};
 
 	/* -------------------------------- post Data ------------------------------- */
 
-	const postData = async (url, data) => {
+	const postData = async (url, data = {}) => {
 		document.querySelector('.status').textContent = message.loading;
 
 		let response = await fetch(url, {
@@ -36,7 +36,18 @@ const forms = (state) => {
 		});
 	};
 
-	/* ------------------------------- submit form ------------------------------ */
+
+/* ----------------------------- hideModals func ---------------------------- */
+
+	const hideModals = () => {
+		const windowsModal = document.querySelectorAll('[data-modal]');
+		windowsModal.forEach(item => {
+			item.style.display = 'none';
+			document.body.style.overflow = '';
+		});
+	};
+
+/* ------------------------------- submit form ------------------------------ */
 
 	form.forEach(item => {
 		item.addEventListener('submit', (e) => {
@@ -57,15 +68,18 @@ const forms = (state) => {
 				.then(res => {
 					console.log(res);
 					statusMessage.textContent = message.success;
+					setTimeout(() => {
+						hideModals();
+					}, 3000);
 				})
 				.catch(() => {
-					statusMessage.textContent = message.failure;
+					statusMessage.innerHTML = message.failure;
 				})
 				.finally(() => {
 					clearInputs();
 					setTimeout(() => {
 						statusMessage.remove();
-					}, 5000);
+					}, 6000);
 				});
 		});
 	});

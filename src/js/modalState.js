@@ -1,5 +1,5 @@
 const modalState = {
-	shape: 0,
+	shape: '0',
 	width: '',
 	height: '',
 	type: "tree",
