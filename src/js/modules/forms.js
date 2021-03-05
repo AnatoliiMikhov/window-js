@@ -1,4 +1,5 @@
 import checkNumInputs from './checkNumInputs';
+import {hideModals}from '../libs/modal-func';
 
 const forms = (state) => {
 	const form = document.querySelectorAll('form'),
@@ -33,17 +34,6 @@ const forms = (state) => {
 	const clearInputs = () => {
 		inputs.forEach(item => {
 			item.value = "";
-		});
-	};
-
-
-/* ----------------------------- hideModals func ---------------------------- */
-
-	const hideModals = () => {
-		const windowsModal = document.querySelectorAll('[data-modal]');
-		windowsModal.forEach(item => {
-			item.style.display = 'none';
-			document.body.style.overflow = '';
 		});
 	};
 
